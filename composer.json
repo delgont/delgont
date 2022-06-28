@@ -1,0 +1,40 @@
+{
+    "name": "delgont/cms",
+    "description" : "Laravel Content Management System",
+    "keywords": [
+        "Laravel CMS",
+        "laravel",
+        "Content Management System"
+    ],
+    "homepage": "https://github.com/delgont/delgont",
+    "type" : "project",
+    "license" : "MIT",
+    "authors" : [
+        {
+            "name" : "Okello Stephen Omoding",
+            "email" : "okellostephenomoding@outlook.com"
+        }
+    ],
+    
+    "minimum-stability" : "dev",
+    "autoload": {
+        "psr-4": {
+            "Delgont\\Cms\\": "src/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Delgont\\Cms\\DelgontServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "delgont/lad": "^1.0",
+        "laravel/framework": "^6.0",
+        "laravel/helpers": "1.5.0"
+    }
+}
