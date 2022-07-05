@@ -20,6 +20,7 @@ class CreatePagesTable extends Migration
             $table->text('extract_text')->nullable();
             $table->longText('page_content')->nullable();
             $table->text('page_featured_image')->nullable();
+            $table->string('post_type')->nullable();
             $table->unsignedInteger('created_by')->nullable();
             $table->unsignedInteger('updated_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users');

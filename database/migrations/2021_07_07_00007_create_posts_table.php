@@ -23,11 +23,12 @@ class CreatePostsTable extends Migration
             $table->longText('post_content')->nullable();
             $table->string('mime_type')->nullable();
             $table->text('post_featured_image')->nullable();
-            $table->unsignedInteger('author_id')->nullable();
-            $table->unsignedInteger('updatedby_id')->nullable();
-            $table->foreign('author_id')->references('id')->on('users');
-            $table->foreign('updatedby_id')->references('id')->on('users');
+            $table->unsignedInteger('created_by')->nullable();
+            $table->unsignedInteger('updated_by')->nullable();
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('updated_by')->references('id')->on('users');
             $table->timestamps();
+            $table->softDeletes();
         });
 
     }

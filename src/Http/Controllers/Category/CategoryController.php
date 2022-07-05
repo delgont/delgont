@@ -1,11 +1,11 @@
 <?php
 
-namespace Stephendevs\Pagman\Http\Controllers\Category;
+namespace Delgont\Cms\Http\Controllers\Category;
 
-use Stephendevs\Pagman\Http\Controllers\Controller;
+use Delgont\Cms\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use Stephendevs\Pagman\Models\Category\Category;
+use Delgont\Cms\Models\Category\Category;
 
 class CategoryController extends Controller
 {
@@ -18,7 +18,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::withCount(['posts'])->get();
-        return (request()->expectsJson()) ? response()->json($categories) : view('pagman::categories.index', compact(['categories']));
+        return (request()->expectsJson()) ? response()->json($categories) : view('delgont::categories.index', compact(['categories']));
     }
      /**
      * Show the form for creating a new resource.

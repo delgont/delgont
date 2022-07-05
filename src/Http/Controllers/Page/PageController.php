@@ -36,7 +36,8 @@ class PageController extends Controller
     {
         $page_keys = $this->pageKeys();
         $categories = Category::all();
-        return view('delgont::pages.create', compact(['page_keys', 'categories']));
+        $postTypes = $this->postTypes();
+        return view('delgont::pages.create', compact(['page_keys', 'categories', 'postTypes']));
     }
 
     /**
@@ -52,9 +53,10 @@ class PageController extends Controller
 
         $page = new Page();
         $page->page_title = $request->page_title;
-        $page->page_key = ($request->page_key && $rquest->page_key != 0) ? $request->page_key : str_replace(' ', '-', $request->page_title);
+        $page->page_key = ($request->page_key && $request->page_key != 0) ? $request->page_key : str_replace(' ', '-', $request->page_title);
         $page->extract_text = $request->extract_text;
         $page->page_content = $request->page_content;
+        $page->post_type = $request->post_type;
         $page->created_by = auth()->user()->id;
         $page->updated_by = auth()->user()->id;
         
@@ -117,6 +119,15 @@ class PageController extends Controller
 
         $page->save();
 
+        $page->categories()->sync($request->category);
+        //check if request has icon
+        if($request->hasFile('page_icon')){
+            $page->icon()->updateOrCreate([
+                'icon' => 'storage/'.request()->page_icon->store(config('delgont.media_dir', 'media'), 'public')
+            ]);
+        }
+
+
         return ($request->expectsJson()) ? response()->json(['success' => true,'message' => 'Page Updated Successfully'], 200) : back()->withInput()->with('updated', 'Page Updated Successfully');
     }
 
@@ -144,6 +155,11 @@ class PageController extends Controller
     private function pageKeys() : array
     {
         return config(config('delgont.web', 'web').'.pages', []);
+    }
+
+    private function postTypes() : array
+    {
+        return config(config('delgont.web', 'web').'.post_types', []);
     }
 
 }

@@ -20,6 +20,7 @@ use Delgont\Cms\Http\Middleware\Permission\PermissionOrRole;
 use Delgont\Cms\Console\Commands\InstallCommand;
 use Delgont\Cms\Console\Commands\UserCommand;
 use Delgont\Cms\Console\Commands\UserCreateCommand;
+use Delgont\Cms\Console\Commands\UserListCommand;
 
 class DelgontServiceProvider extends ServiceProvider
 {
@@ -101,8 +102,8 @@ class DelgontServiceProvider extends ServiceProvider
     {
         $this->commands([
             InstallCommand::class,
-            UserCommand::class,
             UserCreateCommand::class,
+            UserListCommand::class,
         ]);
     }
 

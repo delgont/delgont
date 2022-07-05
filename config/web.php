@@ -17,9 +17,9 @@ return [
     | Default Post types
     |--------------------------------------------------------------------------
     | Even though posts may be categorized futher, each post must belong to a specific type
-    | Post types can also be entered manually via the cms keeping in mind that they must belong to epecific pages or categories
+    | Post types can also be entered manually via the cms keeping in mind that they must belong to specific pages or categories
     */
-    'posts' => [
+    'post_types' => [
         'news', 'service', 'main-slider', 'testimonial'
     ],
 
@@ -27,11 +27,9 @@ return [
     |--------------------------------------------------------------------------
     | Default Post types
     |--------------------------------------------------------------------------
-    | Even though posts may be categorized futher, each post must belong to a specific type
-    | Post types can also be entered manually via the cms keeping in mind that they must belong to epecific pages or categories
     */
     'categories' => [
-        'latest news', 'sports', ''
+        'latest news', 'sports', 'team member', ''
     ]
 
 ];

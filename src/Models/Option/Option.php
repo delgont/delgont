@@ -1,6 +1,6 @@
 <?php
 
-namespace Stephendevs\Pagman\Models\Option;
+namespace Delgont\Cms\Models\Option;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,5 +15,11 @@ class Option extends Model
         return $query
         ->where($column, $value);
     }
+
+    public function scopeFIndOption($query, $column, $value)
+   {
+       return $query
+       ->where($column, $value);
+   }
 
 }

@@ -4,8 +4,13 @@ use Illuminate\Support\Facades\Route;
 
 use Delgont\Cms\Http\Controllers\Auth\AuthController;
 use Delgont\Cms\Http\Controllers\UserController;
+use Delgont\Cms\Http\Controllers\Account\AccountController;
+use Delgont\Cms\Http\Controllers\Account\AccountSettingController;
 
 use Delgont\Cms\Http\Controllers\Page\PageController;
+use Delgont\Cms\Http\Controllers\Post\PostController;
+use Delgont\Cms\Http\Controllers\Post\PostTrashController;
+use Delgont\Cms\Http\Controllers\Category\CategoryController;
 
 use Delgont\Cms\Http\Controllers\TestController;
 
@@ -24,6 +29,12 @@ Route::group(['prefix' => config('delgont.route_prefix', 'dashboard'), 'middlewa
     Route::group(['middleware' => ['auth']], function(){
         Route::post('/logout', [AuthController::class, 'logout'])->name('delgont.logout');
 
+        Route::get('/account', [AccountController::class, 'index'])->name('delgont.account');
+        Route::get('/account/activitylog', [AccountController::class, 'activityLog'])->name('delgont.account.activitylog');
+        Route::post('/account/change/password', [AccountController::class, 'changePassword'])->name('delgont.account.change.password');
+        Route::post('/account/change/avator', [AccountController::class, 'updateAvator'])->name('delgont.account.change.avator');
+        Route::get('/account/settings', [AccountSettingController::class, 'index'])->name('delgont.account.settings');
+
         Route::get('/users', [UserController::class, 'index'])->name('delgont.users');
         Route::get('/users/create', [UserController::class, 'create'])->name('delgont.users.create');
         Route::post('/users/store', [UserController::class, 'store'])->name('delgont.users.store');
@@ -40,6 +51,21 @@ Route::group(['prefix' => config('delgont.route_prefix', 'dashboard'), 'middlewa
         Route::get('/pages/show/{id}', [PageController::class, 'show'])->name('delgont.pages.show');
         Route::get('/pages/edit/{id}', [PageController::class, 'edit'])->name('delgont.pages.edit');
         Route::post('/pages/edit/{id}', [PageController::class, 'update'])->name('delgont.pages.update');
+
+        Route::get('/posts', [PostController::class, 'index'])->name('delgont.posts');
+        Route::get('/posts/create', [PostController::class, 'create'])->name('delgont.posts.create');
+        Route::post('/posts/create', [PostController::class, 'store'])->name('delgont.posts.store');
+        Route::get('/posts/show/{id}', [PostController::class, 'show'])->name('delgont.posts.show');
+        Route::post('/posts/update/{id}', [PostController::class, 'update'])->name('delgont.posts.update');
+        Route::get('/posts/destroy/{id}', [PostController::class, 'destroy'])->name('delgont.posts.destroy');
+
+        Route::get('/posts/trash', [PostTrashController::class, 'index'])->name('delgont.posts.trash');
+        Route::get('/posts/trash/{id}', [PostTrashController::class, 'show'])->name('delgont.posts.trash.show');
+
+        Route::get('/categories', [CategoryController::class, 'index'])->name('delgont.categories');
+        Route::post('/categories/store', [CategoryController::class, 'store'])->name('delgont.categories.store');
+        Route::get('/categories/edit/{id}', [CategoryController::class, 'edit'])->name('delgont.categories.edit');
+        Route::get('/categories/destroy/{id}', [CategoryController::class, 'destroy'])->name('delgont.categories.destroy');
 
         Route::get('/', [TestController::class, 'index'])->name('delgont.dashboard');
     });
