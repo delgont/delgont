@@ -5,6 +5,8 @@ namespace Delgont\Cms;
 use Illuminate\Support\ServiceProvider;
 
 use Illuminate\Routing\Router;
+use Delgont\Cms\Concerns\RegistersCommands;
+
 
 
 /**
@@ -14,16 +16,10 @@ use Delgont\Cms\Http\Middleware\Permission\Permission;
 use Delgont\Cms\Http\Middleware\Permission\PermissionViaRole;
 use Delgont\Cms\Http\Middleware\Permission\PermissionOrRole;
 
-/**
- * Commands
- */
-use Delgont\Cms\Console\Commands\InstallCommand;
-use Delgont\Cms\Console\Commands\UserCommand;
-use Delgont\Cms\Console\Commands\UserCreateCommand;
-use Delgont\Cms\Console\Commands\UserListCommand;
 
 class DelgontServiceProvider extends ServiceProvider
 {
+    use RegistersCommands;
     /**
      * Register services.
      *
@@ -96,15 +92,6 @@ class DelgontServiceProvider extends ServiceProvider
             __DIR__.'/../stubs/Models/User.php.stub' => app_path('User.php'),
         ], 'delgont-overwrite-user-model');
 
-    }
-
-    private function registerCommands() : void
-    {
-        $this->commands([
-            InstallCommand::class,
-            UserCreateCommand::class,
-            UserListCommand::class,
-        ]);
     }
 
   
