@@ -78,8 +78,53 @@ Route::group(['prefix' => config('delgont.route_prefix', 'dashboard'), 'middlewa
  */
 Route::group(['prefix' => 'api'], function(){
     Route::group(['prefix' => config('delgont.route_prefix', 'dashboard')], function(){
+
+        Route::group(['middleware' => ['api','guest:api']], function(){
+            Route::post('/login', [AuthController::class, 'apiLogin']);
+        });
  
         Route::group(['middleware' => ['api','auth:api']], function(){
+
+            Route::get('/account', [AccountController::class, 'index']);
+            Route::get('/account/activitylog', [AccountController::class, 'activityLog']);
+            Route::post('/account/change/password', [AccountController::class, 'changePassword']);
+            Route::post('/account/change/avator', [AccountController::class, 'updateAvator']);
+            Route::get('/account/settings', [AccountSettingController::class, 'index']);
+
+            Route::get('/users', [UserController::class, 'index']);
+            Route::get('/users/create', [UserController::class, 'create']);
+            Route::post('/users/store', [UserController::class, 'store']);
+            Route::get('/users/{username}/{id}', [UserController::class, 'show']);
+            Route::get('/users/edit/{username}/{id}', [UserController::class, 'edit']);
+            Route::post('/users/update/{id}', [UserController::class, 'update']);
+            Route::get('/users/destroy/{id}', [UserController::class, 'destroy']);
+            Route::post('/users/change/password/{id}', [UserController::class, 'changePassword']);
+            Route::get('/users/{username}/activitylog', [UserController::class, 'index']);
+
+            Route::get('/pages', [PageController::class, 'index']);
+            Route::get('/pages/create', [PageController::class, 'create']);
+            Route::post('/pages/create', [PageController::class, 'store']);
+            Route::get('/pages/show/{id}', [PageController::class, 'show']);
+            Route::get('/pages/edit/{id}', [PageController::class, 'edit']);
+            Route::post('/pages/edit/{id}', [PageController::class, 'update']);
+
+            Route::get('/posts', [PostController::class, 'index']);
+            Route::get('/posts/create', [PostController::class, 'create']);
+            Route::post('/posts/create', [PostController::class, 'store']);
+            Route::get('/posts/show/{id}', [PostController::class, 'show']);
+            Route::post('/posts/update/{id}', [PostController::class, 'update']);
+            Route::get('/posts/destroy/{id}', [PostController::class, 'destroy']);
+
+            Route::get('/posts/trash', [PostTrashController::class, 'index']);
+            Route::get('/posts/trash/{id}', [PostTrashController::class, 'show']);
+
+            Route::get('/categories', [CategoryController::class, 'index']);
+            Route::post('/categories/store', [CategoryController::class, 'store']);
+            Route::get('/categories/edit/{id}', [CategoryController::class, 'edit']);
+            Route::get('/categories/destroy/{id}', [CategoryController::class, 'destroy']);
+
+            Route::get('/', [TestController::class, 'index']);
+
 
 
         });
