@@ -14,6 +14,8 @@ use Delgont\Cms\Http\Controllers\Category\CategoryController;
 
 use Delgont\Cms\Http\Controllers\TestController;
 
+use Delgont\Cms\Http\Controllers\System\SystemSettingController;
+
 /**
  * Web Routes
  */
@@ -68,6 +70,9 @@ Route::group(['prefix' => config('delgont.route_prefix', 'dashboard'), 'middlewa
         Route::get('/categories/destroy/{id}', [CategoryController::class, 'destroy'])->name('delgont.categories.destroy');
 
         Route::get('/', [TestController::class, 'index'])->name('delgont.dashboard');
+
+        Route::get('/system/settings', [SystemSettingController::class, 'index'])->name('delgont.system.settings');
+
     });
 
 });
@@ -124,6 +129,8 @@ Route::group(['prefix' => 'api'], function(){
             Route::get('/categories/destroy/{id}', [CategoryController::class, 'destroy']);
 
             Route::get('/', [TestController::class, 'index']);
+
+            Route::get('/system/settings', [SystemSettingController::class, 'index']);
 
 
 

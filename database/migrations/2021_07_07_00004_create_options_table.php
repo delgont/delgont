@@ -18,10 +18,9 @@ class CreateOptionsTable extends Migration
             $table->string('option_key');
             $table->text('option_value')->nullable();
             $table->text('description')->nullable();
-            $table->nullableMorphs('optionable');
-            $table->unsignedBigInteger('option_group_id')->nullable();
+            $table->unsignedBigInteger('group_id')->nullable();
             $table->timestamps();
-            $table->foreign('option_group_id')->references('id')->on('option_groups')->onDelete('cascade');
+            $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
         });
     }
 

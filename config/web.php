@@ -25,11 +25,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Default Post types
+    | Default Categories -- used to categorise posts and any model that uses the Categorable trait
     |--------------------------------------------------------------------------
     */
     'categories' => [
-        'latest news', 'sports', 'team member', ''
+        'latest news', 'sports', 'team member'
+    ],
+
+    'options' => [
+        'option_key' => 'default-value-here'
+    ],
+
+    'option_sidebar_link_routes' => [
+        'web.settings'
     ]
 
 ];
