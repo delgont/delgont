@@ -10,6 +10,11 @@ use Delgont\Cms\Console\Commands\UserCommand;
 use Delgont\Cms\Console\Commands\UserCreateCommand;
 use Delgont\Cms\Console\Commands\UserListCommand;
 use Delgont\Cms\Console\Commands\CategorySyncCommand;
+use Delgont\Cms\Console\Commands\OptionSyncCommand;
+use Delgont\Cms\Console\Commands\OptionListCommand;
+use Delgont\Cms\Console\Commands\OptionCreateCommand;
+use Delgont\Cms\Console\Commands\OptionUpdateCommand;
+use Delgont\Cms\Console\Commands\OptionDeleteCommand;
 
 trait RegistersCommands
 {
@@ -19,7 +24,12 @@ trait RegistersCommands
             InstallCommand::class,
             UserCreateCommand::class,
             UserListCommand::class,
-            CategorySyncCommand::class
+            CategorySyncCommand::class,
+            OptionSyncCommand::class,
+            OptionListCommand::class,
+            OptionCreateCommand::class,
+            OptionUpdateCommand::class,
+            OptionDeleteCommand::class
         ]);
     }
 }

@@ -67,6 +67,5 @@ class UserCommand extends Command
     {
         return $this->user->where('id', $id)->get($this->attributes)->toArray();
     }
-
     
 }
