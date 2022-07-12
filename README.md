@@ -1,5 +1,36 @@
+[![](https://raw.githubusercontent.com/delgont/delgont/main/cover.png)](ttps://www.linkedin.com/in/stephendev)
 
-## Options
+### Get Started
+
+```php
+composer require delgont/cms
+```
+
+```php
+composer require delgont/web
+```
+
+```php
+php artisan vendor:publish --tag=delgont-config
+```
+```php
+php artisan vendor:publish --tag=delgont-config-web
+```
+```php
+php artisan vendor:publish --tag=delgont-overwrite-not-authenticated-redirect --force
+```
+```php
+php artisan vendor:publish --tag=delgont-overwrite-if-authenticated-redirect --force
+```
+```php
+php artisan vendor:publish --tag=delgont-overwrite-user-model --force
+```
+
+```php
+php artisan user:create --default
+```
+
+#### Options
 
 ```php
 'options' => [
