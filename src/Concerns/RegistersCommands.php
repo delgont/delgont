@@ -15,6 +15,7 @@ use Delgont\Cms\Console\Commands\OptionListCommand;
 use Delgont\Cms\Console\Commands\OptionCreateCommand;
 use Delgont\Cms\Console\Commands\OptionUpdateCommand;
 use Delgont\Cms\Console\Commands\OptionDeleteCommand;
+use Delgont\Cms\Console\Commands\PageSyncCommand;
 
 trait RegistersCommands
 {
@@ -29,7 +30,8 @@ trait RegistersCommands
             OptionListCommand::class,
             OptionCreateCommand::class,
             OptionUpdateCommand::class,
-            OptionDeleteCommand::class
+            OptionDeleteCommand::class,
+            PageSyncCommand::class
         ]);
     }
 }
