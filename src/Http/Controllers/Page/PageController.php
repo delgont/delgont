@@ -53,7 +53,7 @@ class PageController extends Controller
 
         $page = new Page();
         $page->page_title = $request->page_title;
-        $page->page_key = ($request->page_key && $request->page_key != 0) ? $request->page_key : str_replace(' ', '-', $request->page_title);
+        $page->page_key = ($request->page_key !== 'ignored') ? $request->page_key : str_replace(' ', '-', $request->page_title);
         $page->extract_text = $request->extract_text;
         $page->page_content = $request->page_content;
         $page->post_type = $request->post_type;
