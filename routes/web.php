@@ -15,6 +15,7 @@ use Delgont\Cms\Http\Controllers\Category\CategoryController;
 use Delgont\Cms\Http\Controllers\TestController;
 
 use Delgont\Cms\Http\Controllers\System\SystemSettingController;
+use Delgont\Cms\Http\Controllers\Settings\GeneralSettingsController;
 
 /**
  * Web Routes
@@ -71,7 +72,8 @@ Route::group(['prefix' => config('delgont.route_prefix', 'dashboard'), 'middlewa
 
         Route::get('/', [TestController::class, 'index'])->name('delgont.dashboard');
 
-        Route::get('/system/settings', [SystemSettingController::class, 'index'])->name('delgont.system.settings');
+        Route::get('/settings/general', [GeneralSettingsController::class, 'index'])->name('delgont.settings.general');
+        Route::post('/settings/general', [GeneralSettingsController::class, 'store']);
 
     });
 

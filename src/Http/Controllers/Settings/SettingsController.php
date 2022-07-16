@@ -23,7 +23,7 @@ class SettingsController extends Controller
     public function index()
     {
         $options =  $this->getOptions();
-        return view('pagman::settings.index', compact(['options']));
+        return view('delgont::settings.index', compact(['options']));
     }
 
     protected function options() : array 
