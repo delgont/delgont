@@ -9,7 +9,9 @@ use Delgont\Cms\Http\Controllers\Account\AccountSettingController;
 
 use Delgont\Cms\Http\Controllers\Page\PageController;
 use Delgont\Cms\Http\Controllers\Post\PostController;
+use Delgont\Cms\Http\Controllers\Post\PostCommentController;
 use Delgont\Cms\Http\Controllers\Post\PostTrashController;
+
 use Delgont\Cms\Http\Controllers\Category\CategoryController;
 
 use Delgont\Cms\Http\Controllers\TestController;
@@ -64,6 +66,11 @@ Route::group(['prefix' => config('delgont.route_prefix', 'dashboard'), 'middlewa
 
         Route::get('/posts/trash', [PostTrashController::class, 'index'])->name('delgont.posts.trash');
         Route::get('/posts/trash/{id}', [PostTrashController::class, 'show'])->name('delgont.posts.trash.show');
+
+        Route::get('/posts/{id}/comments', [PostCommentController::class, 'index'])->name('delgont.posts.comments');
+        Route::post('/posts/{id}/comments', [PostCommentController::class, 'store'])->name('delgont.posts.comments.store');
+        Route::post('/posts/comment/update/{comment_id}', [PostCommentController::class, 'update'])->name('delgont.posts.comments.update');
+
 
         Route::get('/categories', [CategoryController::class, 'index'])->name('delgont.categories');
         Route::post('/categories/store', [CategoryController::class, 'store'])->name('delgont.categories.store');

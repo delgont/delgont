@@ -10,10 +10,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Delgont\Cms\Concerns\HasRoles;
 use Delgont\Cms\Concerns\HasPermissions;
 use Delgont\Cms\Concerns\HasActivityLog;
+use Delgont\Cms\Models\Concerns\CanComment;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable, HasPermissions, HasRoles, HasActivityLog;
+    use HasApiTokens, Notifiable, HasPermissions, HasRoles, HasActivityLog, CanComment;
     /**
      * The attributes that are mass assignable.
      *

@@ -10,6 +10,7 @@ use Delgont\Cms\Models\Concerns\Iconable;
 use Delgont\Cms\Models\Concerns\Downloadable;
 use Delgont\Cms\Models\Concerns\HasAuthor;
 use Delgont\Cms\Models\Concerns\UpdatedBY;
+use Delgont\Cms\Models\Concerns\HasComments;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -17,7 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
-    use Mediable, Categorable, Iconable, HasAuthor, UpdatedBy, SoftDeletes;
+    use Mediable, Categorable, Iconable, HasAuthor, UpdatedBy, SoftDeletes, HasComments;
 
 
     protected $fillable = [
