@@ -13,7 +13,8 @@ class InstallCommand extends Command
      */
     protected $signature = 'delgont:install
                             {--user : Overwrite Default User Model}
-                            {--auth : Overwrite authentication middlewares}';
+                            {--auth : Overwrite authentication middlewares}
+                            {--fresh : Fresh installation or setup}';
 
     /**
      * The console command description.
@@ -21,6 +22,8 @@ class InstallCommand extends Command
      * @var string
      */
     protected $description = 'Command description';
+
+    private $fresh = false;
 
     /**
      * Create a new command instance.
@@ -30,6 +33,7 @@ class InstallCommand extends Command
     public function __construct()
     {
         parent::__construct();
+
     }
 
     /**
@@ -39,7 +43,7 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        $this->info('Hello there how are you doing');
+        $this->info('Doing the install');
 
         if($this->option('auth')){
             $this->overWriteAuthMiddlewares();
@@ -53,19 +57,30 @@ class InstallCommand extends Command
 
         $this->overWriteAuthMiddlewares();
         $this->overWriteUserModel();
+        $this->publishPublishables();
     }
 
     private function overWriteAuthMiddlewares() : void
     {
-        $this->call('vendor:publish', ['--tag' => 'delgont-overwrite-if-authenticated-redirect', '--force' => true]);
-        $this->info('RedirectIfAuthenticated Middleware has been overwritten by delgont logic');
-        $this->call('vendor:publish', ['--tag' => 'delgont-overwrite-not-authenticated-redirect', '--force' => true]);
-        $this->info('Authenticated Middleware has been overwritten by delgont logic');
+        $fresh = ($this->option('fresh')) ? true : false;
+
+        $this->call('vendor:publish', ['--tag' => 'delgont-overwrite-if-authenticated-redirect', '--force' => $fresh]);
+        $this->call('vendor:publish', ['--tag' => 'delgont-overwrite-not-authenticated-redirect', '--force' => $fresh]);
     }
 
     private function overWriteUserModel() : void
     {
-        $this->call('vendor:publish', ['--tag' => 'delgont-overwrite-user-model', '--force' => true]);
-        $this->info('User model has been overwritten');
+        $fresh = ($this->option('fresh')) ? true : false;
+
+        $this->call('vendor:publish', ['--tag' => 'delgont-overwrite-user-model', '--force' => $fresh]);
+    }
+
+    private function publishPublishables() : void 
+    {
+        $fresh = ($this->option('fresh')) ? true : false;
+
+        $this->call('vendor:publish', ['--tag' => 'delgont-config', '--force' => $fresh]);
+        $this->call('vendor:publish', ['--tag' => 'delgont-config-web', '--force' => $fresh]);
+        $this->call('vendor:publish', ['--tag' => 'delgont-config-web', '--force' => $fresh]);
     }
 }

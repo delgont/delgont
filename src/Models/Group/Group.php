@@ -5,21 +5,15 @@ namespace Delgont\Cms\Models\Group;
 
 use Illuminate\Database\Eloquent\Model;
 use Delgont\Cms\Models\Concerns\Iconable;
-use Delgont\Cms\Models\Option\Option;
-
-
-
+use Delgont\Cms\Models\Concerns\HasOptions;
 
 class Group extends Model
 {
-    use Iconable;
+    use Iconable, HasOptions;
     
     protected $guarded = [];
 
 
-    public function options()
-    {
-        return $this->hasMany(Option::class, 'group_id');
-    }
+    
 
 }
